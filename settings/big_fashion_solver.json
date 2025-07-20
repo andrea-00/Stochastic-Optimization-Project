@@ -1,0 +1,16 @@
+{
+    "items": ["Stoffa", "Cerniera", "Bottone", "Filo", "Elastico"],
+    "products": ["Felpa", "Jeans", "Giacca"],
+    "machines": ["M1", "M2"],
+    "costs": [11, 14, 10, 5, 7],
+    "machine_capacities": [30, 40],
+    "process_times": [
+        [0.5, 1.33, 1.9, 0.7, 0.8],
+        [0.6, 1.2, 1.7, 0.8, 0.9]
+    ],
+    "connection_matrix": [
+        [1,1,0,1,0], 
+        [1,1,1,0,1],
+        [1,0,1,1,1]
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "items": ["Stoffa", "Cerniera", "Bottone"],
+    "products": ["Felpa", "Jeans"],
+    "machines": ["M1"],
+    "costs": [11, 14, 10],
+    "machine_capacities": [30],
+    "process_times": [[0.5, 1.33, 1.9]],
+    "connection_matrix": [[1,1,0], [1,1,1]]
+}

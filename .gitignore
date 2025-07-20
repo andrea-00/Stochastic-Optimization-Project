@@ -1,0 +1,21 @@
+# Ambienti Virtuali
+venv/
+.venv/
+env/
+.env/
+
+# Cache di Python e file compilati
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# File di sistema di macOS
+.DS_Store
+
+# File generati da IDE
+.idea/
+.vscode/
+
+# Report e output
+*.pdf
