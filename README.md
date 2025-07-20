@@ -40,4 +40,44 @@ The impact of the number of scenarios on the stability of the results was evalua
 
 | Scenario | $R^{2}$ Score | Best Prices | Optimized Revenue |
 |:--------:|:-------------:|:-----------:|:-----------------:|
-| 100 | 0.9033 | [36, 47] | 80.
+| 100 | 0.9033 | [36, 47] | 80.6837 |
+| 200 | 0.9103 | [36, 46] | 80.7433 |
+| 500 | 0.9113 | [34, 45] | 79.4134 |
+| 1180 | 0.9112 | [34, 45] | 79.3393 |
+
+The analysis was successfully extended to a three-product case, confirming the model's scalability.
+
+---
+
+## Code Structure
+
+The codebase consists of the following key components:
+
+### 1. Store and FashionStore Classes (`instances/store.py`)
+- `Store`: Abstract base class for defining retail stores.
+- `FashionStore`: A subclass modeling a fashion retail store, including demand simulation based on pricing.
+
+### 2. ATO Solver (`solvers/ato_solver.py`)
+- Implements the ATO model as a black box.
+- Returns the revenue given a set of prices.
+
+### 3. Surface Response Optimization (`solvers/surface_response.py`)
+- Implements response surface methodology (RSM) to find optimal configurations.
+- Uses polynomial regression for meta-modeling.
+- Includes visualization tools for response surface analysis.
+
+### 4. Stability Monitor (`main_stability.py`)
+- Ensures simulation stability using confidence intervals.
+- Iteratively adjusts scenario count to guarantee robust estimates.
+
+---
+
+## Execution Instructions
+
+The main method for optimizing the surface response is `optimize()`, which takes as input a simulation function. In our implementation, this function corresponds to the `run_simulation` method of the ATO class. The optimize method returns the optimal prices along with the corresponding revenue. Additionally, the class provides a visualization method, but it is only available for cases involving two price variables.
+
+Within the ATO class, you can register and set different objective functions using the `register_objective` and `set_objective` methods. The class initializes with a default objective function, which is set during instantiation. Moreover, you can add or remove variables and constraints in the built-in Gurobi model. The `set_n_scenarios` method allows for dynamically adjusting the number of scenarios, which is particularly useful when performing stability checks.
+
+Stability is assessed through the `StabilityMonitor` class, which is integrated into the Surface Response Optimizer following the Observer-Observed programming paradigm.
+
+The abstract `Store` class serves as a repository for all business-related information, including parameters stored in JSON files and demand-related data. Our specific implementation is a `FashionStore`, which provides specialized methods for handling demand distributions. The class initializes with a default demand distribution, but additional distributions can be registered and set using the `register_demand` and `set_demand` methods. Furthermore, you can register demand distributions based on predefined scenarios and their corresponding probabilities.
